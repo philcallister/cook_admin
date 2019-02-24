@@ -1,0 +1,34 @@
+<h1>Listing Authors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>First</th>
+      <th>Last</th>
+      <th>Email</th>
+      <th>Bio</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for author <- @authors do %>
+    <tr>
+      <td><img src="<%= avatar_url(author) %>" class="avatar" alt="Avatar" height="50" width="50"></td>
+      <td><%= author.first %></td>
+      <td><%= author.last %></td>
+      <td><%= author.email %></td>
+      <td><%= author.bio %></td>
+
+      <td>
+        <%= link "Show", to: Routes.author_path(@conn, :show, author) %>
+        <%= link "Edit", to: Routes.author_path(@conn, :edit, author) %>
+        <%= link "Delete", to: Routes.author_path(@conn, :delete, author), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Author", to: Routes.author_path(@conn, :new) %></span>

@@ -1,0 +1,58 @@
+<h1>Show Recipe</h1>
+
+<ul>
+
+  <li>
+    <strong>Author ID:</strong>
+    <%= link "#{@recipe.author_id}", to: Routes.author_path(@conn, :show, @recipe.author_id) %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @recipe.name %>
+  </li>
+
+  <li>
+    <strong>Short description:</strong>
+    <%= @recipe.short_description %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @recipe.description %>
+  </li>
+
+  <li>
+    <strong>Serves:</strong>
+    <%= @recipe.serves %>
+  </li>
+
+  <li>
+    <strong>Prep time:</strong>
+    <%= @recipe.prep_time %>
+  </li>
+
+  <li>
+    <strong>Cook time:</strong>
+    <%= @recipe.cook_time %>
+  </li>
+
+  <li>
+    <strong>Calories:</strong>
+    <%= @recipe.calories %>
+  </li>
+
+  <li>
+    <strong>Is featured:</strong>
+    <%= @recipe.is_featured %>
+  </li>
+
+  <li>
+    <strong>Featured pos:</strong>
+    <%= @recipe.featured_pos %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.recipe_path(@conn, :edit, @recipe) %></span>
+<span><%= link "Back", to: Routes.recipe_path(@conn, :index) %></span>

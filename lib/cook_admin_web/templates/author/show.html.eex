@@ -1,0 +1,30 @@
+<h1>Show Author</h1>
+
+<img src="<%= avatar_url(@author) %>" class="avatar" alt="Avatar" height="125" width="125">
+
+<ul>
+
+  <li>
+    <strong>First:</strong>
+    <%= @author.first %>
+  </li>
+
+  <li>
+    <strong>Last:</strong>
+    <%= @author.last %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @author.email %>
+  </li>
+
+  <li>
+    <strong>Bio:</strong>
+    <%= @author.bio %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.author_path(@conn, :edit, @author) %></span>
+<span><%= link "Back", to: Routes.author_path(@conn, :index) %></span>
