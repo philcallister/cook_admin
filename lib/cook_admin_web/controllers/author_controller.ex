@@ -43,10 +43,9 @@ defmodule CookAdminWeb.AuthorController do
 
   def update(conn, %{"id" => id, "author" => author_params}) do
     author = Admin.get_author!(id)
-    if author_params[:avatar] do
+    if author_params["avatar"] do
       delete_existing_avatar(author)
     end
-
     case Admin.update_author(author, author_params) do
       {:ok, author} ->
         conn
