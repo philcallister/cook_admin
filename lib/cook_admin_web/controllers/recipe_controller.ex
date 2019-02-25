@@ -5,6 +5,7 @@ defmodule CookAdminWeb.RecipeController do
   alias CookAdmin.RecipeService.Recipe
   alias CookAdmin.Admin
   alias CookAdmin.Admin.Author
+  alias CookAdmin.Repo
 
   def index(conn, _params) do
     recipes = RecipeService.list_recipes()
@@ -12,19 +13,12 @@ defmodule CookAdminWeb.RecipeController do
   end
 
   def new(conn, _params) do
-
-    changeset = Recipe.changeset(%Recipe{author: Admin.list_authors}) 
-
-    # changeset = RecipeService.change_recipe(%Recipe{})
-    # authors = Admin.list_authors
-
-    render(conn, "new.html", changeset: changeset)
+    authors = Admin.list_authors
+    changeset = RecipeService.change_recipe(%Recipe{})
+    render(conn, "new.html", changeset: changeset, authors: authors)
   end
 
   def create(conn, %{"recipe" => recipe_params}) do
-
-    IO.puts(inspect(recipe_params))
-
     case RecipeService.create_recipe(recipe_params) do
       {:ok, recipe} ->
         conn
@@ -42,9 +36,10 @@ defmodule CookAdminWeb.RecipeController do
   end
 
   def edit(conn, %{"id" => id}) do
-    recipe = RecipeService.get_recipe!(id)
+    authors = Admin.list_authors
+    recipe = RecipeService.get_recipe!(id) |> Repo.preload(:author)
     changeset = RecipeService.change_recipe(recipe)
-    render(conn, "edit.html", recipe: recipe, changeset: changeset)
+    render(conn, "edit.html", recipe: recipe, changeset: changeset, authors: authors)
   end
 
   def update(conn, %{"id" => id, "recipe" => recipe_params}) do

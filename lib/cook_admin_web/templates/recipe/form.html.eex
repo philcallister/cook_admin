@@ -6,7 +6,7 @@
   <% end %>
 
   <%= label f, :author_id %>
-  <%= select(f, :author_id, Enum.map(f.data.author, &{&1.first, &1.id}), prompt: "Choose Author") %>
+  <%= select(f, :author_id, Enum.map(@authors, &{&1.first, &1.id}), prompt: "Choose Author") %>
   <%= error_tag f, :author_id %>
 
   <%= label f, :name %>
