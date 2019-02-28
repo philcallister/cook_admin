@@ -1,58 +1,126 @@
-<h1>Show Recipe</h1>
+<section class="row">
+  <article class="column">
 
-<ul>
+    <h3 class="page">Show Recipe</h1>
+    <ul>
 
-  <li>
-    <strong>Author ID:</strong>
-    <%= link "#{@recipe.author_id}", to: Routes.author_path(@conn, :show, @recipe.author_id) %>
-  </li>
+      <li>
+        <strong>Author ID:</strong>
+        <%= link "#{@recipe.author_id}", to: Routes.author_path(@conn, :show, @recipe.author_id) %>
+      </li>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @recipe.name %>
-  </li>
+      <li>
+        <strong>Name:</strong>
+        <%= @recipe.name %>
+      </li>
 
-  <li>
-    <strong>Short description:</strong>
-    <%= @recipe.short_description %>
-  </li>
+      <li>
+        <strong>Short description:</strong>
+        <%= @recipe.short_description %>
+      </li>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @recipe.description %>
-  </li>
+      <li>
+        <strong>Description:</strong>
+        <%= @recipe.description %>
+      </li>
 
-  <li>
-    <strong>Serves:</strong>
-    <%= @recipe.serves %>
-  </li>
+      <li>
+        <strong>Serves:</strong>
+        <%= @recipe.serves %>
+      </li>
 
-  <li>
-    <strong>Prep time:</strong>
-    <%= @recipe.prep_time %>
-  </li>
+      <li>
+        <strong>Prep time:</strong>
+        <%= @recipe.prep_time %>
+      </li>
 
-  <li>
-    <strong>Cook time:</strong>
-    <%= @recipe.cook_time %>
-  </li>
+      <li>
+        <strong>Cook time:</strong>
+        <%= @recipe.cook_time %>
+      </li>
 
-  <li>
-    <strong>Calories:</strong>
-    <%= @recipe.calories %>
-  </li>
+      <li>
+        <strong>Calories:</strong>
+        <%= @recipe.calories %>
+      </li>
 
-  <li>
-    <strong>Is featured:</strong>
-    <%= @recipe.is_featured %>
-  </li>
+      <li>
+        <strong>Is featured:</strong>
+        <%= @recipe.is_featured %>
+      </li>
 
-  <li>
-    <strong>Featured pos:</strong>
-    <%= @recipe.featured_pos %>
-  </li>
+      <li>
+        <strong>Featured pos:</strong>
+        <%= @recipe.featured_pos %>
+      </li>
 
-</ul>
+    </ul>
+    <span><%= link "Edit", to: Routes.recipe_path(@conn, :edit, @recipe) %></span> |
+    <span><%= link "Back", to: Routes.recipe_path(@conn, :index) %></span>
+  </article>
 
-<span><%= link "Edit", to: Routes.recipe_path(@conn, :edit, @recipe) %></span>
-<span><%= link "Back", to: Routes.recipe_path(@conn, :index) %></span>
+  <article class="column">
+
+    <h3 class="action">Ingredient Sections</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for ingredient_section <- @recipe.ingredient_sections do %>
+          <tr>
+            <td><%= ingredient_section.name %></td>
+            <td>
+              <%= link "Show", to: Routes.recipe_path(@conn, :show, @recipe) %> |
+              <%= link "Edit", to: Routes.recipe_path(@conn, :edit, @recipe) %> |
+              <%= link "Delete", to: Routes.recipe_path(@conn, :delete, @recipe), method: :delete, data: [confirm: "Are you sure?"] %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <span><%= link "New Section", to: Routes.recipe_path(@conn, :edit, @recipe) %></span>
+
+    <h3 class="action">Instruction Sections</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for instruction_section <- @recipe.instruction_sections do %>
+          <tr>
+            <td><%= instruction_section.name %></td>
+            <td>
+              <%= link "Show", to: Routes.recipe_path(@conn, :show, @recipe) %> |
+              <%= link "Edit", to: Routes.recipe_path(@conn, :edit, @recipe) %> |
+              <%= link "Delete", to: Routes.recipe_path(@conn, :delete, @recipe), method: :delete, data: [confirm: "Are you sure?"] %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <span><%= link "New Section", to: Routes.recipe_path(@conn, :edit, @recipe) %></span>
+
+    <h3 class="action">Categories</h1>
+    <ul>
+      <li><%= link "Category 1", to: Routes.recipe_path(@conn, :index) %></li>
+      <li><%= link "Category 2", to: Routes.recipe_path(@conn, :index) %></li>
+      <li><%= link "Category 3", to: Routes.recipe_path(@conn, :index) %></li>
+      <li><%= link "Category 4", to: Routes.recipe_path(@conn, :index) %></li>
+    </ul>
+
+    <h3 class="action">Tags</h1>
+    <ul>
+      <li><%= link "Tag 1", to: Routes.recipe_path(@conn, :index) %></li>
+      <li><%= link "Tag 2", to: Routes.recipe_path(@conn, :index) %></li>
+      <li><%= link "Tag 3", to: Routes.recipe_path(@conn, :index) %></li>
+    </ul>
+  </article>
+
+</section>

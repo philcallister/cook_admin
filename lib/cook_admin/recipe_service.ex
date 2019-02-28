@@ -38,6 +38,33 @@ defmodule CookAdmin.RecipeService do
   def get_recipe!(id), do: Repo.get!(Recipe, id)
 
   @doc """
+  Gets a single recipe.
+
+  Raises `Ecto.NoResultsError` if the Recipe does not exist.
+
+  ## Examples
+
+      iex> get_recipe!(123)
+      %Recipe{}
+
+      iex> get_recipe!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_recipe_with_all!(id) do
+    Repo.one from r in Recipe,
+      where: r.id == ^id,
+      left_join: ing_s in assoc(r, :ingredient_sections), order_by: [asc: ing_s.sequence],
+      left_join: ins_s in assoc(r, :instruction_sections), order_by: [asc: ins_s.sequence],
+      left_join: author in assoc(r, :author),
+      preload: [
+        ingredient_sections: ing_s,
+        instruction_sections: ins_s,
+        author: author
+      ]
+  end
+
+  @doc """
   Creates a recipe.
 
   ## Examples

@@ -4,7 +4,6 @@ defmodule CookAdminWeb.RecipeController do
   alias CookAdmin.RecipeService
   alias CookAdmin.RecipeService.Recipe
   alias CookAdmin.Admin
-  alias CookAdmin.Admin.Author
   alias CookAdmin.Repo
 
   def index(conn, _params) do
@@ -26,12 +25,13 @@ defmodule CookAdminWeb.RecipeController do
         |> redirect(to: Routes.recipe_path(conn, :show, recipe))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        authors = Admin.list_authors
+        render(conn, "new.html", changeset: changeset, authors: authors)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    recipe = RecipeService.get_recipe!(id)
+    recipe = RecipeService.get_recipe_with_all!(id)
     render(conn, "show.html", recipe: recipe)
   end
 
@@ -52,7 +52,8 @@ defmodule CookAdminWeb.RecipeController do
         |> redirect(to: Routes.recipe_path(conn, :show, recipe))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", recipe: recipe, changeset: changeset)
+        authors = Admin.list_authors
+        render(conn, "edit.html", recipe: recipe, changeset: changeset, authors: authors)
     end
   end
 

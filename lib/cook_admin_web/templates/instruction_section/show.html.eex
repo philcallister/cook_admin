@@ -1,0 +1,17 @@
+<h1>Show Instruction Section</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @instruction_section.name %>
+  </li>
+
+  <li>
+    <strong>Sequence:</strong>
+    <%= @instruction_section.sequence %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.recipe_instruction_section_path(@conn, :edit, @instruction_section.recipe_id, @instruction_section) %></span>

@@ -1,18 +1,11 @@
-<h1>Listing Recipes</h1>
+<h1 class="page">Listing Recipes</h1>
 
 <table>
   <thead>
     <tr>
       <th>Author ID</th>
       <th>Name</th>
-      <th>Short description</th>
-      <th>Description</th>
-      <th>Serves</th>
-      <th>Prep time</th>
-      <th>Cook time</th>
-      <th>Calories</th>
       <th>Is featured</th>
-      <th>Featured pos</th>
 
       <th></th>
     </tr>
@@ -22,18 +15,11 @@
     <tr>
       <td><%= link "#{recipe.author_id}", to: Routes.author_path(@conn, :show, recipe.author_id) %></td>
       <td><%= recipe.name %></td>
-      <td><%= recipe.short_description %></td>
-      <td><%= recipe.description %></td>
-      <td><%= recipe.serves %></td>
-      <td><%= recipe.prep_time %></td>
-      <td><%= recipe.cook_time %></td>
-      <td><%= recipe.calories %></td>
       <td><%= recipe.is_featured %></td>
-      <td><%= recipe.featured_pos %></td>
 
       <td>
-        <%= link "Show", to: Routes.recipe_path(@conn, :show, recipe) %>
-        <%= link "Edit", to: Routes.recipe_path(@conn, :edit, recipe) %>
+        <%= link "Show", to: Routes.recipe_path(@conn, :show, recipe) %> |
+        <%= link "Edit", to: Routes.recipe_path(@conn, :edit, recipe) %> |
         <%= link "Delete", to: Routes.recipe_path(@conn, :delete, recipe), method: :delete, data: [confirm: "Are you sure?"] %>
       </td>
     </tr>

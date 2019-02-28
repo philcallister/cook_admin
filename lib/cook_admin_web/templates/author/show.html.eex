@@ -1,4 +1,4 @@
-<h1>Show Author</h1>
+<h1 class="page">Show Author</h1>
 
 <img src="<%= avatar_url(@author) %>" class="avatar" alt="Avatar" height="125" width="125">
 
@@ -26,5 +26,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.author_path(@conn, :edit, @author) %></span>
+<span><%= link "Edit", to: Routes.author_path(@conn, :edit, @author) %></span> |
 <span><%= link "Back", to: Routes.author_path(@conn, :index) %></span>

@@ -15,6 +15,9 @@ defmodule CookAdmin.RecipeService.Recipe do
     field :serves, :integer
     field :short_description, :string
 
+    has_many :ingredient_sections, CookAdmin.IngredientSectionService.IngredientSection, on_delete: :delete_all
+    has_many :instruction_sections, CookAdmin.InstructionSectionService.InstructionSection, on_delete: :delete_all
+
     timestamps()
   end
 

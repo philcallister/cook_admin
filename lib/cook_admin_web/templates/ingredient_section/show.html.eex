@@ -1,0 +1,17 @@
+<h1>Show Ingredient Section</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @ingredient_section.name %>
+  </li>
+
+  <li>
+    <strong>Sequence:</strong>
+    <%= @ingredient_section.sequence %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.recipe_ingredient_section_path(@conn, :edit, @ingredient_section.recipe_id, @ingredient_section) %></span>

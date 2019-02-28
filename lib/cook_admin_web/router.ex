@@ -18,7 +18,10 @@ defmodule CookAdminWeb.Router do
 
     get "/", PageController, :index
     resources "/authors", AuthorController
-    resources "/recipes", RecipeController
+    resources "/recipes", RecipeController do
+      resources "/ingredient_sections", IngredientSectionController, except: [:index]
+      resources "/instruction_sections", InstructionSectionController, except: [:index]
+    end
   end
   
   # Other scopes may use custom stacks.

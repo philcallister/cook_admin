@@ -11,6 +11,8 @@ defmodule CookAdmin.Admin.Author do
     field :last, :string
     field :avatar, CookAdmin.Avatar.Type
 
+    has_many :recipes, CookAdmin.RecipeService.Recipe, on_delete: :delete_all
+
     timestamps()
   end
 
