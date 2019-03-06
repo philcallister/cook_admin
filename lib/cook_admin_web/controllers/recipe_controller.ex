@@ -3,6 +3,8 @@ defmodule CookAdminWeb.RecipeController do
 
   alias CookAdmin.RecipeService
   alias CookAdmin.RecipeService.Recipe
+  alias CookAdmin.IngredientSectionService
+  alias CookAdmin.InstructionSectionService
   alias CookAdmin.Admin
   alias CookAdmin.Repo
 
@@ -20,6 +22,8 @@ defmodule CookAdminWeb.RecipeController do
   def create(conn, %{"recipe" => recipe_params}) do
     case RecipeService.create_recipe(recipe_params) do
       {:ok, recipe} ->
+        IngredientSectionService.create_ingredient_section(%{name: "Ingredients", sequence: 0, recipe_id: recipe.id})
+        InstructionSectionService.create_instruction_section(%{name: "Instructions", sequence: 0, recipe_id: recipe.id})
         conn
         |> put_flash(:info, "Recipe created successfully.")
         |> redirect(to: Routes.recipe_path(conn, :show, recipe))

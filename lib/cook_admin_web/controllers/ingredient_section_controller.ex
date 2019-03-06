@@ -59,6 +59,6 @@ defmodule CookAdminWeb.IngredientSectionController do
 
     conn
     |> put_flash(:info, "Ingredient section deleted successfully.")
-    |> redirect(to: Routes.recipe_ingredient_section_path(conn, :index))
+    |> redirect(to: Routes.recipe_path(conn, :show, ingredient_section.recipe_id))
   end
 end

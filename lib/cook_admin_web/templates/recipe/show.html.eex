@@ -74,15 +74,15 @@
           <tr>
             <td><%= ingredient_section.name %></td>
             <td>
-              <%= link "Show", to: Routes.recipe_path(@conn, :show, @recipe) %> |
-              <%= link "Edit", to: Routes.recipe_path(@conn, :edit, @recipe) %> |
-              <%= link "Delete", to: Routes.recipe_path(@conn, :delete, @recipe), method: :delete, data: [confirm: "Are you sure?"] %>
+              <%= link "Show", to: Routes.recipe_ingredient_section_path(@conn, :show, @recipe, ingredient_section.id) %> |
+              <%= link "Edit", to: Routes.recipe_ingredient_section_path(@conn, :edit, @recipe, ingredient_section.id) %> |
+              <%= link "Delete", to: Routes.recipe_ingredient_section_path(@conn, :delete, @recipe, ingredient_section.id), method: :delete, data: [confirm: "Are you sure?"] %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <span><%= link "New Section", to: Routes.recipe_path(@conn, :edit, @recipe) %></span>
+    <span><%= link "New Section", to: Routes.recipe_ingredient_section_path(@conn, :new, @recipe) %></span>
 
     <h3 class="action">Instruction Sections</h1>
     <table>
@@ -97,15 +97,15 @@
           <tr>
             <td><%= instruction_section.name %></td>
             <td>
-              <%= link "Show", to: Routes.recipe_path(@conn, :show, @recipe) %> |
-              <%= link "Edit", to: Routes.recipe_path(@conn, :edit, @recipe) %> |
-              <%= link "Delete", to: Routes.recipe_path(@conn, :delete, @recipe), method: :delete, data: [confirm: "Are you sure?"] %>
+              <%= link "Show", to: Routes.recipe_instruction_section_path(@conn, :show, @recipe, instruction_section.id) %> |
+              <%= link "Edit", to: Routes.recipe_instruction_section_path(@conn, :edit, @recipe, instruction_section.id) %> |
+              <%= link "Delete", to: Routes.recipe_instruction_section_path(@conn, :delete, @recipe, instruction_section.id), method: :delete, data: [confirm: "Are you sure?"] %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <span><%= link "New Section", to: Routes.recipe_path(@conn, :edit, @recipe) %></span>
+    <span><%= link "New Section", to: Routes.recipe_instruction_section_path(@conn, :new, @recipe) %></span>
 
     <h3 class="action">Categories</h1>
     <ul>

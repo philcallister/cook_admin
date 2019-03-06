@@ -1,3 +1,6 @@
-<h1>Edit Ingredient Section</h1>
+<h1 class="page">Edit Ingredient Section</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.recipe_ingredient_section_path(@conn, :update, @recipe_id, @ingredient_section)) %>
+
+<span><%= link "Back", to: Routes.recipe_path(@conn, :show, @recipe_id) %></span>
+

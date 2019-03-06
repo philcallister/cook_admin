@@ -1,4 +1,4 @@
-<h1>Show Ingredient Section</h1>
+<h1 class="page">Show Ingredient Section</h1>
 
 <ul>
 
@@ -14,4 +14,5 @@
 
 </ul>
 
+<span><%= link "Back", to: Routes.recipe_path(@conn, :show, @ingredient_section.recipe_id) %></span> |
 <span><%= link "Edit", to: Routes.recipe_ingredient_section_path(@conn, :edit, @ingredient_section.recipe_id, @ingredient_section) %></span>

@@ -59,6 +59,6 @@ defmodule CookAdminWeb.InstructionSectionController do
 
     conn
     |> put_flash(:info, "Instruction section deleted successfully.")
-    |> redirect(to: Routes.recipe_instruction_section_path(conn, :index))
+    |> redirect(to: Routes.recipe_path(conn, :show, instruction_section.recipe_id))
   end
 end
